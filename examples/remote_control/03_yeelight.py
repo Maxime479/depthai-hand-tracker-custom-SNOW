@@ -61,6 +61,12 @@ def change_preset(event):
 def change_brightness(event):
     event.print_line()
     rotation = event.hand.rotation
+    #print('EVENT')
+    #print(*event)
+    #print(' ')
+    print(' -- HAND')
+    print(event.hand.rotation)
+    #print(*event.hand)
     if rotation < -0.2:
         level = "+"
     elif rotation > 0.4:
@@ -79,14 +85,12 @@ def change_brightness(event):
 
 config = {
 
-    'tracker': {'args': {'body_pre_focusing': 'higher'}},
 
-    'renderer': {'enable': True, 'args': {'output': 'toggle_light.mp4'}},
 
     'pose_actions': [
         {'name': 'ON_OFF', 'pose': 'FIST', 'callback': 'toggle_light'},
-        {'name': 'PRESET 1', 'pose': 'ONE', 'callback': 'change_preset'},
-        {'name': 'PRESET 2', 'pose': 'TWO', 'callback': 'change_preset'},
+        {'name': 'PRESET 1', 'pose': 'TWO', 'callback': 'change_preset'},
+        {'name': 'PRESET 2', 'pose': 'ONE', 'callback': 'change_preset'},
         {'name': 'PRESET 3', 'pose': 'THREE', 'callback': 'change_preset'},
         {'name': 'PRESET 4', 'pose': 'FOUR', 'callback': 'change_preset'},
         {'name': 'BRIGHTNESS', 'pose': 'FIVE', 'callback': 'change_brightness',
@@ -94,4 +98,5 @@ config = {
     ]
 }
 
-HandController(config).loop()
+controller = HandController(config)
+controller.loop()

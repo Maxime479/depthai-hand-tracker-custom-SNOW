@@ -48,7 +48,7 @@ parser_renderer.add_argument('-o', '--output',
 args = parser.parse_args()
 dargs = vars(args)
 tracker_args = {a:dargs[a] for a in ['pd_model', 'lm_model', 'internal_fps', 'internal_frame_height'] if dargs[a] is not None}
-
+print(dargs)
 if args.edge:
     from HandTrackerEdge import HandTracker
     tracker_args['use_same_image'] = not args.dont_force_same_image
